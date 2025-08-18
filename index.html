@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3 OpSec Standard (W3OS)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: white;
+            border-bottom: 2px solid #e9ecef;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .github-icon {
+            color: inherit;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .navbar-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+
+        .progress-info {
+            font-size: 13px;
+            color: #6c757d;
+            margin-left: 15px;
+        }
+
+        .hidden-input {
+            display: none;
+        }
+
+        /* Dropdown styling */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            width: 100%;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border-radius: 4px;
+            border: 1px solid #dee2e6;
+            top: 100%;
+            right: 0;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            font-size: 13px;
+            border-bottom: 1px solid #f8f9fa;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f8f9fa;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-arrow {
+            margin-left: 4px;
+            font-size: 10px;
+        }
+
+        /* Dark mode toggle */
+        .theme-toggle {
+            position: relative;
+            display: inline-block;
+            width: 16px;
+            height: 30px;
+        }
+
+        .theme-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .theme-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #6c757d;
+            transition: .4s;
+            border-radius: 16px;
+        }
+
+        .theme-slider:before {
+            position: absolute;
+            content: "";
+            height: 12px;
+            width: 12px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+
+        .theme-toggle input:checked + .theme-slider {
+            background-color: #6c757d;
+        }
+
+        .theme-toggle input:checked + .theme-slider:before {
+            transform: translateY(-14px);
+        }
+
+        .theme-slider:before {
+            content: "☀";
+            color: black;
+        }
+
+        .theme-toggle input:checked + .theme-slider:before {
+            content: "☾";
+            color: black;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .navbar {
+            background: #2d2d2d;
+            border-bottom-color: #404040;
+        }
+
+        body.dark-mode .navbar-brand {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .stats-bar {
+            background: #2d2d2d;
+            border-bottom-color: #404040;
+        }
+
+        body.dark-mode .stat-number {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .stat-label {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .spreadsheet-table {
+            background: #2d2d2d;
+        }
+
+        body.dark-mode .spreadsheet-table th {
+            background: #404040;
+            color: #e0e0e0;
+            border-color: #555;
+        }
+
+        body.dark-mode .spreadsheet-table td {
+            background: #2d2d2d;
+            border-color: #555;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .spreadsheet-table tr:nth-child(even) td {
+            background: #353535;
+        }
+
+        body.dark-mode .spreadsheet-table tr:hover td {
+            background: #404040 !important;
+        }
+
+        body.dark-mode .spreadsheet-table tr:hover td.section-cell {
+            background: #353535 !important;
+        }
+
+        body.dark-mode .domain-row td {
+            background: #404040 !important;
+            border-top-color: #555;
+        }
+
+        body.dark-mode .section-row td {
+            background: #353535 !important;
+        }
+
+        body.dark-mode .spreadsheet-table td[style*="background-color: #f8f9fa"] {
+            background: #353535 !important;
+        }
+
+        /* Section cells - prevent hover effect and fix dark mode background */
+        .spreadsheet-table .section-cell {
+            background: #f8f9fa !important;
+        }
+
+        body.dark-mode .spreadsheet-table .section-cell {
+            background: #353535 !important;
+        }
+
+        .spreadsheet-table td[style*="background-color: #f8f9fa"]:hover {
+            background: #f8f9fa !important;
+        }
+
+        body.dark-mode .spreadsheet-table td[style*="background-color: #f8f9fa"]:hover {
+            background: #353535 !important;
+        }
+
+        body.dark-mode .domain-percentage {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .collapse-icon {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .comment-input {
+            background: #353535;
+            border-color: #555;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .comment-input::placeholder {
+            color: #888;
+        }
+
+        body.dark-mode .comment-input:focus {
+            border-color: #007bff;
+        }
+
+        body.dark-mode .custom-checkbox {
+            border-color: #888;
+            background: #353535;
+        }
+
+        body.dark-mode .custom-checkbox.checked {
+            background: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+
+        body.dark-mode .dropdown-content {
+            background-color: #2d2d2d;
+            border-color: #555;
+        }
+
+        body.dark-mode .dropdown-content a {
+            color: #e0e0e0;
+            border-bottom-color: #404040;
+        }
+
+        body.dark-mode .dropdown-content a:hover {
+            background-color: #404040;
+        }
+
+        body.dark-mode .loading {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .error {
+            color: #ff6b6b;
+            background: #4a2c2c;
+            border-color: #6b4444;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .stats-bar {
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+            padding: 12px 20px;
+            display: flex;
+            gap: 30px;
+            font-size: 13px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-number {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .stat-label {
+            color: #6c757d;
+        }
+
+        /* Spreadsheet Table */
+        .spreadsheet-container {
+            overflow: auto;
+            flex: 1;
+            min-height: 0;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+
+        .spreadsheet-container::-webkit-scrollbar {
+            display: none; /* WebKit */
+        }
+
+        /* Fix bottom spacing */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .spreadsheet-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            font-size: 13px;
+            table-layout: fixed;
+        }
+
+        .spreadsheet-table thead {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .spreadsheet-table th {
+            background: #f8f9fa;
+            color: #495057;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid #dee2e6;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .spreadsheet-table th:not(:first-child) {
+            border-left: none;
+        }
+
+        body.dark-mode .spreadsheet-table th {
+            background: #404040;
+            color: #e0e0e0;
+            border-color: #555;
+        }
+
+        .spreadsheet-table th:first-child { width: 180px; }
+        .spreadsheet-table th:nth-child(2) { width: 100px; }
+        .spreadsheet-table th:nth-child(3) { width: 200px; }
+        .spreadsheet-table th:nth-child(4) { width: auto; min-width: 300px; }
+        .spreadsheet-table th:nth-child(5) { width: 50px; }
+        .spreadsheet-table th:nth-child(6) { width: 250px; }
+
+        .spreadsheet-table td {
+            padding: 8px;
+            border: 1px solid #dee2e6;
+            vertical-align: top;
+            background: white;
+            height: 1px; /* Forces cells to be as small as possible, allowing content to determine height */
+        }
+
+        /* Comment cell specific styling */
+        .spreadsheet-table td:last-child {
+            position: relative;
+            height: auto;
+            padding: 8px;
+        }
+
+        .spreadsheet-table tr:nth-child(even) td {
+            background: #f8f9fa;
+        }
+
+        .spreadsheet-table tr:not(.domain-row):hover td {
+            background: #e3f2fd !important;
+        }
+
+        .spreadsheet-table tr:not(.domain-row):hover td.section-cell {
+            background: #f8f9fa !important;
+        }
+
+        /* Domain grouping */
+        .domain-row {
+            background: #e9ecef !important;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .domain-row td {
+            background: #e9ecef !important;
+            border-top: 2px solid #adb5bd;
+            padding: 12px 8px;
+            position: relative;
+        }
+
+        .domain-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .domain-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .domain-percentage {
+            font-size: 12px;
+            color: #495057;
+            font-weight: 500;
+        }
+
+        .collapse-icon {
+            font-size: 14px;
+            transition: transform 0.2s ease;
+            color: #495057;
+        }
+
+        .collapse-icon.collapsed {
+            transform: rotate(90deg);
+        }
+
+        .domain-content {
+            display: table-row;
+        }
+
+        .domain-content.collapsed {
+            display: none;
+        }
+
+        /* Ensure collapsed rows are hidden */
+        .domain-content[style*="display: none"] {
+            display: none !important;
+        }
+
+        .section-row {
+            background: #f1f3f4 !important;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .section-row td {
+            background: #f1f3f4 !important;
+            padding: 10px 8px;
+        }
+
+        /* Checkbox styling */
+        .checkbox-cell {
+            text-align: center;
+            padding: 8px 4px;
+            vertical-align: middle !important;
+            position: relative;
+        }
+
+        .custom-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #6c757d;
+            border-radius: 3px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            background: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .custom-checkbox.checked {
+            background: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+
+        .custom-checkbox:hover {
+            border-color: #007bff;
+        }
+
+        /* ID styling */
+        .req-id {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            background: #007bff;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.2s;
+        }
+
+        .req-id:hover {
+            background: #0056b3;
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Comment input */
+        .comment-input {
+            width: calc(100% - 2px);
+            height: calc(100% - 2px);
+            min-height: 60px;
+            padding: 6px;
+            border: 1px solid #ced4da;
+            border-radius: 3px;
+            font-family: inherit;
+            font-size: 12px;
+            resize: none;
+            background: white;
+            box-sizing: border-box;
+            position: absolute;
+            top: 1px;
+            left: 1px;
+        }
+
+        .comment-input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+
+        .comment-input::placeholder {
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        /* Loading and error states */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        .error {
+            text-align: center;
+            padding: 20px;
+            color: #dc3545;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            margin: 20px;
+            border-radius: 4px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .navbar-controls {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .stats-bar {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .spreadsheet-table th:nth-child(5) {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .spreadsheet-table {
+                font-size: 12px;
+            }
+
+            .spreadsheet-table th,
+            .spreadsheet-table td {
+                padding: 6px 4px;
+            }
+
+            .comment-input {
+                min-height: 50px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="https://github.com/W3OSC/web3-opsec-standard" target="_blank" title="GitHub Repository" class="navbar-brand">
+            Web3 OpSec Standard (W3OS)
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="github-icon">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+        </a>
+        <div class="navbar-controls">
+            <a href="https://github.com/W3OSC/web3-opsec-standard/tree/main/guides" class="btn" target="_blank">
+                Guides
+            </a>
+            <div class="dropdown">
+                <button class="btn btn-secondary">
+                    Import/Export <span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="exportToJSON(); return false;">Export JSON</a>
+                    <a href="#" onclick="document.getElementById('jsonImport').click(); return false;">Import JSON</a>
+                </div>
+            </div>
+            <button class="btn btn-secondary" onclick="clearAllData()">
+                Clear
+            </button>
+            <label class="theme-toggle">
+                <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
+                <span class="theme-slider"></span>
+            </label>
+        </div>
+        <input type="file" id="jsonImport" class="hidden-input" accept=".json" onchange="importFromJSON(event)">
+    </div>
+
+    <div class="stats-bar" id="statsBar">
+        <div class="stat-item">
+            <span class="stat-number" id="totalReqs">0</span>
+            <span class="stat-label">Requirements</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number" id="totalControls">0</span>
+            <span class="stat-label">Control Points</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number" id="completedCount">0</span>
+            <span class="stat-label">Completed</span>
+        </div>
+        <div class="stat-item" style="margin-left: auto;">
+            <span class="stat-number" id="progressText">0% Complete</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="loading" class="loading">
+            Loading requirements...
+        </div>
+        
+        <div id="error" class="error" style="display: none;">
+            Error loading requirements. Please check your internet connection and try again.
+        </div>
+        
+        <div class="spreadsheet-container" id="spreadsheetContainer" style="display: none;">
+            <table class="spreadsheet-table" id="spreadsheetTable">
+                <thead>
+                    <tr>
+                        <th>Section</th>
+                        <th>ID</th>
+                        <th>Requirement</th>
+                        <th>Control Points</th>
+                        <th style="text-align: center;">✓</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        class Web3OpSecChecklist {
+            constructor() {
+                this.requirements = [];
+                this.checklistData = this.loadFromStorage();
+                this.domains = [
+                    { id: '01', name: 'Wallet & Multi-Sig Management', slug: 'wallet-multisig' },
+                    { id: '02', name: 'Endpoint Security', slug: 'endpoints' },
+                    { id: '03', name: 'Communications & Social Media', slug: 'communications-socials' },
+                    { id: '04', name: 'DevOps & Infrastructure', slug: 'devops-infrastructure' },
+                    { id: '05', name: 'General Security', slug: 'general-security' }
+                ];
+            }
+
+            async init() {
+                try {
+                    await this.loadRequirements();
+                    this.render();
+                    this.updateStats();
+                } catch (error) {
+                    console.error('Error initializing checklist:', error);
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('error').style.display = 'block';
+                }
+            }
+
+            async loadRequirements() {
+                // Determine base URL based on environment
+                const baseUrl = window.location.protocol === 'file:' || 
+                               window.location.hostname === 'localhost' || 
+                               window.location.hostname === '127.0.0.1'
+                    ? '.' 
+                    : 'https://raw.githubusercontent.com/W3OSC/web3-opsec-standard/main';
+
+                for (const domain of this.domains) {
+                    const url = `${baseUrl}/requirements/${domain.id}-${domain.slug}.md`;
+                    try {
+                        const response = await fetch(url);
+                        const content = await response.text();
+                        this.parseRequirements(content, domain);
+                    } catch (error) {
+                        console.error(`Error loading ${domain.name}:`, error);
+                    }
+                }
+            }
+
+            parseRequirements(content, domain) {
+                const lines = content.split('\n');
+                let currentSection = '';
+                let currentRequirement = null;
+                let inRequirement = false;
+                let bulletPoints = [];
+
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i].trim();
+
+                    // Section headers (### **Section Name**)
+                    if (line.startsWith('### **') && line.endsWith('**')) {
+                        currentSection = line.replace(/### \*\*|\*\*/g, '');
+                        continue;
+                    }
+
+                    // Requirement headers (**SP-XX-XXX: Title**)
+                    if (line.match(/^\*\*SP-[A-Z]+-\d+:/)) {
+                        // Save previous requirement if exists
+                        if (currentRequirement) {
+                            currentRequirement.bulletPoints = [...bulletPoints];
+                            this.requirements.push(currentRequirement);
+                        }
+
+                        // Parse new requirement
+                        const match = line.match(/^\*\*(SP-[A-Z]+-\d+): ([^*]+)\*\*/);
+                        if (match) {
+                            currentRequirement = {
+                                id: match[1],
+                                title: match[2].trim(),
+                                section: currentSection,
+                                domain: domain,
+                                bulletPoints: []
+                            };
+                            bulletPoints = [];
+                            inRequirement = true;
+                        }
+                        continue;
+                    }
+
+                    // Bullet points
+                    if (inRequirement && line.startsWith('- ')) {
+                        bulletPoints.push(line.substring(2).trim());
+                        continue;
+                    }
+
+                    // End of requirement (empty line or new section)
+                    if (inRequirement && (line === '' || line.startsWith('#'))) {
+                        if (currentRequirement && bulletPoints.length > 0) {
+                            currentRequirement.bulletPoints = [...bulletPoints];
+                            this.requirements.push(currentRequirement);
+                            currentRequirement = null;
+                            bulletPoints = [];
+                        }
+                        inRequirement = false;
+                    }
+                }
+
+                // Don't forget the last requirement
+                if (currentRequirement && bulletPoints.length > 0) {
+                    currentRequirement.bulletPoints = [...bulletPoints];
+                    this.requirements.push(currentRequirement);
+                }
+            }
+
+            // Helper function to create valid CSS class names from domain names
+            sanitizeDomainName(domainName) {
+                return domainName
+                    .replace(/[^a-zA-Z0-9\s]/g, '') // Remove special characters
+                    .replace(/\s+/g, '-') // Replace spaces with hyphens
+                    .toLowerCase(); // Convert to lowercase
+            }
+
+            // Generate GitHub URL for a requirement
+            getGitHubUrl(req) {
+                const baseUrl = 'https://github.com/W3OSC/web3-opsec-standard/blob/main/requirements';
+                const filename = `${req.domain.id}-${req.domain.slug}.md`;
+                
+                // Create a search pattern for the requirement ID
+                const searchPattern = encodeURIComponent(`**${req.id}:`);
+                
+                return `${baseUrl}/${filename}#:~:text=${searchPattern}`;
+            }
+
+            render() {
+                const tableBody = document.getElementById('tableBody');
+                tableBody.innerHTML = '';
+
+                // Group requirements by domain
+                const groupedByDomain = {};
+                this.requirements.forEach(req => {
+                    const domainKey = req.domain.name;
+                    if (!groupedByDomain[domainKey]) {
+                        groupedByDomain[domainKey] = {};
+                    }
+                    if (!groupedByDomain[domainKey][req.section]) {
+                        groupedByDomain[domainKey][req.section] = [];
+                    }
+                    groupedByDomain[domainKey][req.section].push(req);
+                });
+
+                // Render each domain
+                Object.keys(groupedByDomain).forEach(domainName => {
+                    // Calculate domain completion percentage
+                    const domainRequirements = Object.values(groupedByDomain[domainName]).flat();
+                    const domainCompleted = domainRequirements.filter(req => this.isChecked(req.id)).length;
+                    const domainPercentage = domainRequirements.length > 0 ? Math.round((domainCompleted / domainRequirements.length) * 100) : 0;
+
+                    const sanitizedDomainName = this.sanitizeDomainName(domainName);
+
+                    // Domain header row
+                    const domainRow = document.createElement('tr');
+                    domainRow.className = 'domain-row';
+                    domainRow.onclick = () => this.toggleDomain(domainName);
+                    
+                    const domainCell = document.createElement('td');
+                    domainCell.colSpan = 6;
+                    domainCell.innerHTML = `
+                        <div class="domain-header">
+                            <span>${domainName}</span>
+                            <div class="domain-controls">
+                                <span class="domain-percentage" id="domain-percentage-${sanitizedDomainName}">${domainPercentage}% Complete</span>
+                                <span class="collapse-icon" id="collapse-${sanitizedDomainName}">▼</span>
+                            </div>
+                        </div>
+                    `;
+                    domainRow.appendChild(domainCell);
+                    tableBody.appendChild(domainRow);
+
+                    // Render each section within the domain
+                    Object.keys(groupedByDomain[domainName]).forEach(sectionName => {
+                        const sectionRequirements = groupedByDomain[domainName][sectionName];
+                        
+                        // Render requirements in this section - ONE ROW PER REQUIREMENT
+                        sectionRequirements.forEach((req, reqIndex) => {
+                            const row = document.createElement('tr');
+                            row.className = `domain-content domain-${sanitizedDomainName}`;
+                            
+                            // Section cell - only show for first requirement in section, with rowspan
+                            if (reqIndex === 0) {
+                                const sectionCell = document.createElement('td');
+                                sectionCell.textContent = req.section;
+                                sectionCell.rowSpan = sectionRequirements.length;
+                                sectionCell.style.verticalAlign = 'middle';
+                                sectionCell.style.textAlign = 'center';
+                                sectionCell.style.fontWeight = '600';
+                                sectionCell.className = 'section-cell';
+                                sectionCell.style.backgroundColor = '#f8f9fa';
+                                row.appendChild(sectionCell);
+                            }
+
+                            // ID cell with GitHub link
+                            const idCell = document.createElement('td');
+                            const githubUrl = this.getGitHubUrl(req);
+                            idCell.innerHTML = `<a href="${githubUrl}" target="_blank" class="req-id">${req.id}</a>`;
+                            row.appendChild(idCell);
+
+                            // Requirement title cell
+                            const titleCell = document.createElement('td');
+                            titleCell.textContent = req.title;
+                            row.appendChild(titleCell);
+
+                            // Control points cell - bulleted list (no checkboxes)
+                            const controlCell = document.createElement('td');
+                            const controlList = document.createElement('ul');
+                            controlList.style.margin = '0';
+                            controlList.style.paddingLeft = '20px';
+                            
+                            req.bulletPoints.forEach(bulletPoint => {
+                                const listItem = document.createElement('li');
+                                listItem.style.marginBottom = '4px';
+                                listItem.textContent = bulletPoint;
+                                controlList.appendChild(listItem);
+                            });
+                            
+                            controlCell.appendChild(controlList);
+                            row.appendChild(controlCell);
+
+                            // Checkbox cell - ONE checkbox per requirement
+                            const checkboxCell = document.createElement('td');
+                            checkboxCell.className = 'checkbox-cell';
+                            const checkbox = document.createElement('div');
+                            checkbox.className = `custom-checkbox ${this.isChecked(req.id) ? 'checked' : ''}`;
+                            checkbox.innerHTML = this.isChecked(req.id) ? '✓' : '';
+                            checkbox.onclick = () => this.toggleCheckbox(req.id, checkbox);
+                            checkboxCell.appendChild(checkbox);
+                            row.appendChild(checkboxCell);
+
+                            // Comment cell - single comment for the entire requirement
+                            const commentCell = document.createElement('td');
+                            const commentInput = document.createElement('textarea');
+                            commentInput.className = 'comment-input';
+                            commentInput.placeholder = 'Add notes, evidence, or comments for this requirement...';
+                            commentInput.value = this.getComment(req.id) || '';
+                            commentInput.oninput = (e) => this.saveComment(req.id, e.target.value);
+                            commentCell.appendChild(commentInput);
+                            row.appendChild(commentCell);
+
+                            tableBody.appendChild(row);
+                        });
+                    });
+                });
+
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('spreadsheetContainer').style.display = 'block';
+            }
+
+            toggleDomain(domainName) {
+                const sanitizedDomainName = this.sanitizeDomainName(domainName);
+                const domainRows = document.querySelectorAll(`.domain-${sanitizedDomainName}`);
+                const icon = document.getElementById(`collapse-${sanitizedDomainName}`);
+                
+                if (icon) {
+                    const isCollapsed = icon.classList.contains('collapsed');
+                    
+                    domainRows.forEach(row => {
+                        if (isCollapsed) {
+                            row.style.display = 'table-row';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                    
+                    icon.classList.toggle('collapsed');
+                }
+            }
+
+            toggleCheckbox(reqId, checkboxElement) {
+                const currentState = this.checklistData.checks[reqId] || false;
+                this.checklistData.checks[reqId] = !currentState;
+                
+                checkboxElement.classList.toggle('checked');
+                checkboxElement.innerHTML = !currentState ? '✓' : '';
+                
+                this.saveToStorage();
+                this.updateStats();
+                this.updateDomainPercentages();
+            }
+
+            updateDomainPercentages() {
+                // Group requirements by domain
+                const groupedByDomain = {};
+                this.requirements.forEach(req => {
+                    const domainKey = req.domain.name;
+                    if (!groupedByDomain[domainKey]) {
+                        groupedByDomain[domainKey] = [];
+                    }
+                    groupedByDomain[domainKey].push(req);
+                });
+
+                // Update each domain's percentage
+                Object.keys(groupedByDomain).forEach(domainName => {
+                    const domainRequirements = groupedByDomain[domainName];
+                    const domainCompleted = domainRequirements.filter(req => this.isChecked(req.id)).length;
+                    const domainPercentage = domainRequirements.length > 0 ? Math.round((domainCompleted / domainRequirements.length) * 100) : 0;
+                    
+                    const sanitizedDomainName = this.sanitizeDomainName(domainName);
+                    const percentageElement = document.getElementById(`domain-percentage-${sanitizedDomainName}`);
+                    if (percentageElement) {
+                        percentageElement.textContent = `${domainPercentage}% Complete`;
+                    }
+                });
+            }
+
+            isChecked(reqId) {
+                return this.checklistData.checks[reqId] || false;
+            }
+
+            saveComment(reqId, comment) {
+                this.checklistData.comments[reqId] = comment;
+                this.saveToStorage();
+                this.updateStats();
+            }
+
+            getComment(reqId) {
+                return this.checklistData.comments[reqId];
+            }
+
+            updateStats() {
+                const totalRequirements = this.requirements.length;
+                const totalControlPoints = this.requirements.reduce((count, req) => count + req.bulletPoints.length, 0);
+                const checkedRequirements = Object.values(this.checklistData.checks).filter(Boolean).length;
+                const percentage = totalRequirements > 0 ? Math.round((checkedRequirements / totalRequirements) * 100) : 0;
+
+                document.getElementById('totalReqs').textContent = totalRequirements;
+                document.getElementById('totalControls').textContent = totalControlPoints;
+                document.getElementById('completedCount').textContent = checkedRequirements;
+                document.getElementById('progressText').textContent = `${percentage}% Complete (${checkedRequirements}/${totalRequirements})`;
+            }
+
+            loadFromStorage() {
+                const stored = localStorage.getItem('web3-opsec-checklist');
+                if (stored) {
+                    try {
+                        return JSON.parse(stored);
+                    } catch (e) {
+                        console.error('Error parsing stored data:', e);
+                    }
+                }
+                return { checks: {}, comments: {} };
+            }
+
+            saveToStorage() {
+                localStorage.setItem('web3-opsec-checklist', JSON.stringify(this.checklistData));
+            }
+
+            exportToJSON() {
+                const exportData = {
+                    version: '3.0',
+                    exportDate: new Date().toISOString(),
+                    requirements: this.requirements.map(req => ({
+                        id: req.id,
+                        title: req.title,
+                        section: req.section,
+                        domain: req.domain.name,
+                        controlPoints: req.bulletPoints,
+                        completed: this.isChecked(req.id),
+                        comment: this.getComment(req.id) || ''
+                    })),
+                    checklistData: this.checklistData
+                };
+
+                const jsonContent = JSON.stringify(exportData, null, 2);
+                const blob = new Blob([jsonContent], { type: 'application/json;charset=utf-8;' });
+                const link = document.createElement('a');
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', `web3-opsec-checklist-${new Date().toISOString().split('T')[0]}.json`);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
+            importFromJSON(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const jsonData = JSON.parse(e.target.result);
+                        
+                        // Create a new checklistData object to merge with existing data
+                        let importedData = { checks: {}, comments: {} };
+                        
+                        // Handle different format versions
+                        if (jsonData.version === '3.0' && jsonData.checklistData) {
+                            // New requirement-level format (v3.0)
+                            importedData = jsonData.checklistData;
+                        } else if (jsonData.version === '2.0' && jsonData.checklistData) {
+                            // Previous control-point-level format (v2.0)
+                            importedData = jsonData.checklistData;
+                        } else if (jsonData.checks && jsonData.comments) {
+                            // Legacy format - direct checklistData
+                            importedData = jsonData;
+                        } else {
+                            throw new Error('Invalid JSON format');
+                        }
+
+                        // Create a set of current valid requirement IDs
+                        const validRequirementIds = new Set();
+                        this.requirements.forEach(req => {
+                            validRequirementIds.add(req.id);
+                        });
+
+                        // Filter imported data to only include keys that exist in current requirements
+                        const filteredData = { checks: {}, comments: {} };
+                        
+                        // Import checks and comments for requirements that still exist
+                        Object.keys(importedData.checks || {}).forEach(key => {
+                            // Handle both requirement-level keys (SP-XXX-XXX) and legacy control-point keys (SP-XXX-XXX::bulletpoint)
+                            const reqId = key.includes('::') ? key.split('::')[0] : key;
+                            
+                            if (validRequirementIds.has(reqId)) {
+                                // For requirement-level tracking, only use the requirement ID
+                                if (!key.includes('::')) {
+                                    filteredData.checks[reqId] = importedData.checks[key];
+                                }
+                            }
+                        });
+                        
+                        Object.keys(importedData.comments || {}).forEach(key => {
+                            // Handle both requirement-level keys (SP-XXX-XXX) and legacy control-point keys (SP-XXX-XXX::bulletpoint)
+                            const reqId = key.includes('::') ? key.split('::')[0] : key;
+                            
+                            if (validRequirementIds.has(reqId) && importedData.comments[key]) {
+                                // For requirement-level tracking, only use the requirement ID
+                                if (!key.includes('::')) {
+                                    filteredData.comments[reqId] = importedData.comments[key];
+                                }
+                            }
+                        });
+
+                        // Merge with existing data (preserve any current data not in import)
+                        this.checklistData = {
+                            checks: { ...this.checklistData.checks, ...filteredData.checks },
+                            comments: { ...this.checklistData.comments, ...filteredData.comments }
+                        };
+
+                        this.saveToStorage();
+                        this.render();
+                        this.updateStats();
+
+                        const importedChecks = Object.keys(filteredData.checks).length;
+                        const importedComments = Object.keys(filteredData.comments).length;
+                        const totalImportedItems = Object.keys(importedData.checks || {}).length + Object.keys(importedData.comments || {}).length;
+                        const skippedItems = totalImportedItems - (importedChecks + importedComments);
+                        
+                        let message = `JSON imported successfully!\n\nImported: ${importedChecks} requirements, ${importedComments} comments`;
+                        if (skippedItems > 0) {
+                            message += `\nSkipped: ${skippedItems} items (no longer exist in current requirements)`;
+                        }
+                        
+                        alert(message);
+                    } catch (error) {
+                        console.error('Error importing JSON:', error);
+                        alert('Error importing JSON. Please check the file format.');
+                    }
+                };
+                reader.readAsText(file);
+            }
+
+            clearAllData() {
+                if (confirm('Are you sure you want to clear all data? This cannot be undone.')) {
+                    this.checklistData = { checks: {}, comments: {} };
+                    this.saveToStorage();
+                    this.render();
+                    this.updateStats();
+                }
+            }
+        }
+
+        // Global functions for button handlers
+        function exportToJSON() {
+            window.checklist.exportToJSON();
+        }
+
+        function importFromJSON(event) {
+            window.checklist.importFromJSON(event);
+        }
+
+        function clearAllData() {
+            window.checklist.clearAllData();
+        }
+
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+            
+            if (themeToggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Load saved theme on page load
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.getElementById('themeToggle');
+            
+            // Default to dark mode if no preference is saved
+            if (savedTheme === 'light') {
+                document.body.classList.remove('dark-mode');
+                themeToggle.checked = false;
+            } else {
+                // Default to dark mode (savedTheme === 'dark' or null)
+                document.body.classList.add('dark-mode');
+                themeToggle.checked = true;
+                if (!savedTheme) {
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTheme();
+            window.checklist = new Web3OpSecChecklist();
+            window.checklist.init();
+        });
+    </script>
+</body>
+</html>
