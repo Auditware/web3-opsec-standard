@@ -39,7 +39,7 @@ Other Web3 security standards exist, but are not specifically focused on OpSec. 
   <tr>
     <td align="center">
       <a href="https://www.auditware.io/">
-        <img src="images/contributor-logos/Auditware.svg" width="150" alt="Auditware"/>
+        <img src="images/contributor logos/Auditware.svg" width="150" alt="Auditware"/>
       </a>
     </td>
   </tr>
