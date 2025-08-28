@@ -8,14 +8,17 @@
 - R-GS-004: Tampering of Monitoring Mechanisms
 - R-GS-005: Communication Failures During Incidents
 - R-GS-006: Insufficient Backup and Recovery Capabilities
-- R-GS-007: Social Engineering
-- R-GS-008: Weak Passwords
-- R-GS-009: Account Takeover Via Credential Leakage
-- R-GS-010: Compromise of Phone Number by SIM Swapping
-- R-GS-011: Lost Account Access
-- R-GS-012: Overly Broad Access
-- R-GS-013: SSO Single Point of Failure
-- R-GS-014: Malicious or Compromised Insiders
+- R-GS-007: Social Engineering Attacks
+- R-GS-008: Recruitment and Contractor Compromise  
+- R-GS-009: Spear Phishing and Email Spoofing
+- R-GS-010: Communication Platform Manipulation
+- R-GS-011: Weak Passwords
+- R-GS-012: Account Takeover Via Credential Leakage
+- R-GS-013: Compromise of Phone Number by SIM Swapping
+- R-GS-014: Lost Account Access
+- R-GS-015: Overly Broad Access
+- R-GS-016: SSO Single Point of Failure
+- R-GS-017: Malicious or Compromised Insiders
 
 
 ### **Incident Response Planning**
@@ -122,3 +125,66 @@
 	- Break-glass accounts differ from typical accounts in that they are heavily monitored (alerts on any actions taken), and their credentials are designed for one-time use
 	- These account credentials can be held by admins in a secure vault, or you can use [Shamir’s Secret Sharing](https://en.wikipedia.org/wiki/Shamir%27s_secret_sharing) to create a quorum necessary to reconstruct the credentials for additional security
 	- Break-glass accounts and credentials should be deleted after use and recreated to be ready for future events
+
+### **Social Engineering Defense**
+
+**SP-GS-016: Safe Technical Assessments**
+- Provide isolated environments for all technical tests and code challenges
+- Never let candidates download or run code on their personal devices
+- Use secure platforms for all technical assessments
+- Train your hiring team to spot and report suspicious behavior during assessments
+
+**SP-GS-017: Employee Training Against Scams**
+- Train employees to recognize fake job offers targeting Web3 workers
+- Teach team members to verify and report suspicious recruitment attempts
+- Never let employees share passwords or wallet info with external recruiters
+- Create easy ways for employees to report recruitment scams
+
+**SP-GS-018: Communication Security**
+- Train employees to verify who they're talking to before switching platforms
+- Don't let employees click links in messages from unknown people
+- Teach team about scams that move from LinkedIn/Twitter to Telegram
+- Use only official company email for professional communications
+
+**SP-GS-019: Email Protection**
+- Set up email authentication to prevent domain spoofing
+- Run regular phishing tests using Web3-specific scenarios
+- Train employees never to share credentials via email
+- Have employees verify unusual requests through other channels
+- Use email security tools to scan for malicious links and attachments
+
+**SP-GS-020: Response to Social Engineering**
+- Have a plan to quickly isolate devices that might be infected
+- Make it easy for employees to report social engineering attempts
+- Share attack methods with the Web3 security community
+- Review access immediately for any targeted employee
+- Monitor systems used by potentially compromised team members
+
+## Social Engineering Prevention Checklist
+
+### **Technical Assessment Security**
+- [ ] Isolated environments set up for all technical tests
+- [ ] Policy: no personal device usage for candidate evaluations
+- [ ] Hiring team trained to spot suspicious behavior during assessments
+- [ ] Secure platforms used for all technical assessments
+
+### **Employee Protection**
+- [ ] Team trained to recognize fake Web3 job scams
+- [ ] Easy reporting system for suspicious recruitment attempts
+- [ ] Policy: no sharing passwords or wallet info with recruiters
+- [ ] Training on platform switching scams (LinkedIn→Telegram)
+- [ ] Official company email required for professional communications
+
+### **Email and Communication Security**
+- [ ] Email authentication (SPF, DKIM, DMARC) set up
+- [ ] Regular phishing tests with Web3 scenarios
+- [ ] Email security tools scanning for malicious links
+- [ ] Process to verify unusual requests through other channels
+- [ ] Clear escalation procedures for suspected attacks
+
+### **Incident Response**
+- [ ] Device isolation plan for suspected compromises
+- [ ] Employee reporting system for social engineering attempts
+- [ ] Information sharing with Web3 security community
+- [ ] Automatic access review when employee is targeted
+- [ ] Enhanced monitoring for potentially compromised systems
