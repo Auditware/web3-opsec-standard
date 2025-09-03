@@ -9,17 +9,18 @@
 - R-GS-005: Communication Failures During Incidents
 - R-GS-006: Insufficient Backup and Recovery Capabilities
 - R-GS-007: Social Engineering Attacks
-- R-GS-008: Recruitment and Contractor Compromise  
-- R-GS-009: Spear Phishing and Email Spoofing
-- R-GS-010: Communication Platform Manipulation
-- R-GS-011: Weak Passwords
-- R-GS-012: Account Takeover Via Credential Leakage
-- R-GS-013: Compromise of Phone Number by SIM Swapping
-- R-GS-014: Lost Account Access
-- R-GS-015: Overly Broad Access
-- R-GS-016: SSO Single Point of Failure
-- R-GS-017: Malicious or Compromised Insiders
-
+- R-GS-008: Weak Passwords
+- R-GS-009: Account Takeover Via Credential Leakage
+- R-GS-010: Compromise of Phone Number by SIM Swapping
+- R-GS-011: Lost Account Access
+- R-GS-012: Overly Broad Access
+- R-GS-013: SSO Single Point of Failure
+- R-GS-014: Malicious or Compromised Insiders
+- R-GS-015: Third-Party Data Breaches Affecting Organization
+- R-GS-016: Third Party Privileged Access Abuse
+- R-GS-017: Compromised Credential Detection Failure
+- R-GS-018: Nation-State Operative Infiltration Via Hiring
+- R-GS-019: Remote Worker Identity Fraud and Impersonation
 
 ### **Incident Response Planning**
 
@@ -81,7 +82,7 @@
 - For shared accounts where delegation is not possible, temporary credentials should be provisioned as needed, rather than long-lived ones (or credentials should be rotated after each use)
 - Account credentials must not be shared, in order to enforce non-repudiation of actions taken
 
-**SP-GS-009: Principle of Least Privilege**
+**SP-GS-010: Principle of Least Privilege**
 - Admin privileges must only be granted to the minimum necessary roles
 - Dedicated accounts must be used for admin activities, separate from the general accounts of admin users
 - Permission changes and admin account usage should be logged and actively monitored
@@ -126,65 +127,25 @@
 	- These account credentials can be held by admins in a secure vault, or you can use [Shamir’s Secret Sharing](https://en.wikipedia.org/wiki/Shamir%27s_secret_sharing) to create a quorum necessary to reconstruct the credentials for additional security
 	- Break-glass accounts and credentials should be deleted after use and recreated to be ready for future events
 
-### **Social Engineering Defense**
+**SP-GS-016: Third Party Access Management**
+- External access to organization systems must be time-limited and purpose-specific
+- Just-in-time access provisioning should be used for third party support activities
+- External access must be monitored and logged with immutable audit trails
+- Multi-factor authentication must be required for all vendor access
+- Vendor access must be reviewed and revalidated on a regular schedule
 
-**SP-GS-016: Safe Technical Assessments**
-- Provide isolated environments for all technical tests and code challenges
-- Never let candidates download or run code on their personal devices
-- Use secure platforms for all technical assessments
-- Train your hiring team to spot and report suspicious behavior during assessments
+**SP-GS-017: Enhanced Identity Verification for Remote Workers**
+- Require video interviews with multiple team members for all remote positions (using a trusted video conferencing platform)
+- Verify government-issued identification documents and perform background checks of new hires
+- For high-privilege roles, require in-person meetings or trusted third-party verification
 
-**SP-GS-017: Employee Training Against Scams**
-- Train employees to recognize fake job offers targeting Web3 workers
-- Teach team members to verify and report suspicious recruitment attempts
-- Never let employees share passwords or wallet info with external recruiters
-- Create easy ways for employees to report recruitment scams
+### **Compromise Monitoring**
 
-**SP-GS-018: Communication Security**
-- Train employees to verify who they're talking to before switching platforms
-- Don't let employees click links in messages from unknown people
-- Teach team about scams that move from LinkedIn/Twitter to Telegram
-- Use only official company email for professional communications
+**SP-GS-018: Leaked Credential Monitoring**
+- Leaked passwords and account details must be monitored for the organization
+- Automatic alerts for leaked passwords must be instant and immutable
+- All passwords must be reset and access reviewed for any organization members with leaked credentials
 
-**SP-GS-019: Email Protection**
-- Set up email authentication to prevent domain spoofing
-- Run regular phishing tests using Web3-specific scenarios
-- Train employees never to share credentials via email
-- Have employees verify unusual requests through other channels
-- Use email security tools to scan for malicious links and attachments
-
-**SP-GS-020: Response to Social Engineering**
-- Have a plan to quickly isolate devices that might be infected
-- Make it easy for employees to report social engineering attempts
-- Share attack methods with the Web3 security community
-- Review access immediately for any targeted employee
-- Monitor systems used by potentially compromised team members
-
-## Social Engineering Prevention Checklist
-
-### **Technical Assessment Security**
-- [ ] Isolated environments set up for all technical tests
-- [ ] Policy: no personal device usage for candidate evaluations
-- [ ] Hiring team trained to spot suspicious behavior during assessments
-- [ ] Secure platforms used for all technical assessments
-
-### **Employee Protection**
-- [ ] Team trained to recognize fake Web3 job scams
-- [ ] Easy reporting system for suspicious recruitment attempts
-- [ ] Policy: no sharing passwords or wallet info with recruiters
-- [ ] Training on platform switching scams (LinkedIn→Telegram)
-- [ ] Official company email required for professional communications
-
-### **Email and Communication Security**
-- [ ] Email authentication (SPF, DKIM, DMARC) set up
-- [ ] Regular phishing tests with Web3 scenarios
-- [ ] Email security tools scanning for malicious links
-- [ ] Process to verify unusual requests through other channels
-- [ ] Clear escalation procedures for suspected attacks
-
-### **Incident Response**
-- [ ] Device isolation plan for suspected compromises
-- [ ] Employee reporting system for social engineering attempts
-- [ ] Information sharing with Web3 security community
-- [ ] Automatic access review when employee is targeted
-- [ ] Enhanced monitoring for potentially compromised systems
+**SP-GS-019: Compromised Accounts Monitoring**
+-  Socials accounts should have automated behavioral analysis in place to flag unusual activities that might indicate ongoing attacks (e.g. twitter posts about unrelated tokens)
+- All publications and announcements from authentic organization channels should be monitored by multiple organization members

@@ -8,6 +8,8 @@
 - R-CS-004: Information Disclosure Through Insecure Communications
 - R-CS-005: Coordinated Attacks on Multiple Platforms
 - R-CS-006: Platform-Specific Vulnerabilities
+- R-CS-007: Spear Phishing and Email Spoofing
+- R-CS-008: Impersonated Organization Members
 
 ### **Account Security**
 
@@ -30,6 +32,8 @@
 - SPF, DKIM, and DMARC email domain records must be properly configured and enabled
 - Email filtering should be enabled to block known malicious content and spam
 - All internal emails should be encrypted and signed with an authentic PGP key, with the public keys shared via a trusted channel
+- Sender address spoofing must be detected and filtered for all organization member inboxes
+- Email platforms should scan for malicious links and attachments
 
 **SP-CS-005: External Party Verification**
 - Interactions with new external identities and communication channels must have their authenticity confirmed with that party via a secure channel (existing authenticated channels, video chats, social consensus, in person discussion)
@@ -42,3 +46,8 @@
 **SP-CS-007: Critical Operations Confirmations**
 - Internal operations coordination must be confirmed in a secure channel (camera-on video calls, end-to-end encrypted chats, in person)
 - Redundant channels for confirmation of operational details are recommended
+
+**SP-CS-008: Organization Identity**
+ - Organization members must perform all email communication using official emails
+ - Externally verifiable PGP keys should be used to sign emails for external parties to verify authenticity of organization emails
+ - External direct messaging profiles must be linked to from trusted sources (e.g. company websites or well-established social media accounts)
