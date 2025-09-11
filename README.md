@@ -33,13 +33,18 @@ Web3 organizations face unique operational security challenges that traditional 
 
 Other Web3 security standards exist, but are not specifically focused on OpSec. W3OS is designed to be straightforward, actionable, and dedicated to operational security to supplement traditional code audits and help Web3 organizations maximize their overall security posture.
 
-## Contributors
+## Core Contributors
 
 <table>
   <tr>
     <td align="center">
       <a href="https://www.auditware.io/">
         <img src="images/contributor logos/Auditware.svg" width="150" alt="Auditware"/>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://ethcf.org/">
+        <img src="images/contributor-logos/ECF.svg" width="150" alt="Ethereum Community Foundation"/>
       </a>
     </td>
   </tr>

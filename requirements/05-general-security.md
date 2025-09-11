@@ -8,7 +8,7 @@
 - R-GS-004: Tampering of Monitoring Mechanisms
 - R-GS-005: Communication Failures During Incidents
 - R-GS-006: Insufficient Backup and Recovery Capabilities
-- R-GS-007: Social Engineering
+- R-GS-007: Social Engineering Attacks
 - R-GS-008: Weak Passwords
 - R-GS-009: Account Takeover Via Credential Leakage
 - R-GS-010: Compromise of Phone Number by SIM Swapping
@@ -16,7 +16,11 @@
 - R-GS-012: Overly Broad Access
 - R-GS-013: SSO Single Point of Failure
 - R-GS-014: Malicious or Compromised Insiders
-
+- R-GS-015: Third-Party Data Breaches Affecting Organization
+- R-GS-016: Third Party Privileged Access Abuse
+- R-GS-017: Compromised Credential Detection Failure
+- R-GS-018: Nation-State Operative Infiltration Via Hiring
+- R-GS-019: Remote Worker Identity Fraud and Impersonation
 
 ### **Incident Response Planning**
 
@@ -78,7 +82,7 @@
 - For shared accounts where delegation is not possible, temporary credentials should be provisioned as needed, rather than long-lived ones (or credentials should be rotated after each use)
 - Account credentials must not be shared, in order to enforce non-repudiation of actions taken
 
-**SP-GS-009: Principle of Least Privilege**
+**SP-GS-010: Principle of Least Privilege**
 - Admin privileges must only be granted to the minimum necessary roles
 - Dedicated accounts must be used for admin activities, separate from the general accounts of admin users
 - Permission changes and admin account usage should be logged and actively monitored
@@ -122,3 +126,26 @@
 	- Break-glass accounts differ from typical accounts in that they are heavily monitored (alerts on any actions taken), and their credentials are designed for one-time use
 	- These account credentials can be held by admins in a secure vault, or you can use [Shamir’s Secret Sharing](https://en.wikipedia.org/wiki/Shamir%27s_secret_sharing) to create a quorum necessary to reconstruct the credentials for additional security
 	- Break-glass accounts and credentials should be deleted after use and recreated to be ready for future events
+
+**SP-GS-016: Third Party Access Management**
+- External access to organization systems must be time-limited and purpose-specific
+- Just-in-time access provisioning should be used for third party support activities
+- External access must be monitored and logged with immutable audit trails
+- Multi-factor authentication must be required for all vendor access
+- Vendor access must be reviewed and revalidated on a regular schedule
+
+**SP-GS-017: Enhanced Identity Verification for Remote Workers**
+- Require video interviews with multiple team members for all remote positions (using a trusted video conferencing platform)
+- Verify government-issued identification documents and perform background checks of new hires
+- For high-privilege roles, require in-person meetings or trusted third-party verification
+
+### **Compromise Monitoring**
+
+**SP-GS-018: Leaked Credential Monitoring**
+- Leaked passwords and account details must be monitored for the organization
+- Automatic alerts for leaked passwords must be instant and immutable
+- All passwords must be reset and access reviewed for any organization members with leaked credentials
+
+**SP-GS-019: Compromised Accounts Monitoring**
+-  Socials accounts should have automated behavioral analysis in place to flag unusual activities that might indicate ongoing attacks (e.g. twitter posts about unrelated tokens)
+- All publications and announcements from authentic organization channels should be monitored by multiple organization members
