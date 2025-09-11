@@ -1,4 +1,4 @@
-<div align="center"> <img src="../../../images/guide logos/discord.svg" alt="Discord Logo" width="64" height="64"> <h2><a href="https://discord.com/" target="_blank" rel="noopener noreferrer">Discord</a> Configuration Guide</h2> </div>
+<div align="center"> <img src="../../../images/guides/discord.svg" alt="Discord Logo" width="64" height="64"> <h2><a href="https://discord.com/" target="_blank" rel="noopener noreferrer">Discord</a> Configuration Guide</h2> </div>
 
 ## Individual Account Settings
 

@@ -1,4 +1,4 @@
-<div align="center"> <img src="../../../images/guide logos/notion.svg" alt="notion Logo" width="64" height="64"> <h2><a href="https://www.notion.so/" target="_blank" rel="noopener noreferrer">Notion</a> Configuration Guide</h2> </div>
+<div align="center"> <img src="../../../images/guides/notion.svg" alt="notion Logo" width="64" height="64"> <h2><a href="https://www.notion.so/" target="_blank" rel="noopener noreferrer">Notion</a> Configuration Guide</h2> </div>
 
 ## Individual Account Settings
 

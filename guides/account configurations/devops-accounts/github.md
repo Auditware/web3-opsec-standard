@@ -1,4 +1,4 @@
-<div align="center"> <img src="../../../images/guide logos/github.svg" alt="Github Logo" width="64" height="64"> <h2><a href="https://github.com/" target="_blank" rel="noopener noreferrer">Github</a> Configuration Guide</h2> </div>
+<div align="center"> <img src="../../../images/guides/github.svg" alt="Github Logo" width="64" height="64"> <h2><a href="https://github.com/" target="_blank" rel="noopener noreferrer">Github</a> Configuration Guide</h2> </div>
 
 ## Individual Account Settings
 
