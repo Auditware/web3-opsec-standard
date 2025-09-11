@@ -39,12 +39,12 @@ Other Web3 security standards exist, but are not specifically focused on OpSec. 
   <tr>
     <td align="center">
       <a href="https://www.auditware.io/">
-        <img src="images/contributor logos/Auditware.svg" width="150" alt="Auditware"/>
+        <img src="images/contributors/Auditware.svg" width="150" alt="Auditware"/>
       </a>
     </td>
     <td align="center">
       <a href="https://ethcf.org/">
-        <img src="images/contributor-logos/ECF.svg" width="150" alt="Ethereum Community Foundation"/>
+        <img src="images/contributors/ECF.svg" width="150" alt="Ethereum Community Foundation"/>
       </a>
     </td>
   </tr>
