@@ -1,4 +1,8 @@
-# Web3 OpSec Standard (W3OS)
+<p align="center">
+  <img src="images/banner.png" alt="Web3 Operational Security Standard" width="100%" />
+</p>
+
+# Web3 OpSec Standard (W3OS) <img src="images/icon.png" width="32" alt="W3OS logo"/>
 
 [![Version](https://img.shields.io/badge/version-1.0.0--draft-orange.svg)](https://github.com/web3-opsec-standard/releases)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
