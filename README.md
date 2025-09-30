@@ -2,7 +2,11 @@
   <img src="images/banner.png" alt="Web3 Operational Security Standard" width="100%" />
 </p>
 
-# Web3 OpSec Standard (W3OS) <img src="../../../images/guides/Frame 542.png" alt="W3OS Emblem" width="64" height="64">
+<img src="https://raw.githubusercontent.com/Auditware/web3-opsec-standard/refs/heads/Readme.-Changes/Updates-TXT/guides/Frame%20542.png" 
+       alt="W3OS Emblem" 
+       width="84" 
+       height="84" 
+       align="absmiddle" />
 
 [![Version](https://img.shields.io/badge/version-1.0.0--draft-orange.svg)](https://github.com/web3-opsec-standard/releases)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
