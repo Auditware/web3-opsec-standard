@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/banner.png" alt="Web3 Operational Security Standard" width="100%" />
+  <img src="https://raw.githubusercontent.com/Auditware/web3-opsec-standard/refs/heads/Readme.-Changes/Updates-TXT/guides/Frame%20542.png" width="55%" />
 </p>
 
 <img src="https://raw.githubusercontent.com/Auditware/web3-opsec-standard/refs/heads/Readme.-Changes/Updates-TXT/guides/Frame%20542.png" 
