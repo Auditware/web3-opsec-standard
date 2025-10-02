@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="https://github.com/Auditware/web3-opsec-standard/blob/Readme.-Changes/Updates-TXT/images/contributors/W3OS%20Banner.png" width="55%" />
+  <img src="https://github.com/Auditware/web3-opsec-standard/blob/Readme.-Changes/Updates-TXT/images/contributors/W3OS%20Graphic.png" width="300" 
+       height="300" />
 </p>
 
 <img src="https://raw.githubusercontent.com/Auditware/web3-opsec-standard/refs/heads/Readme.-Changes/Updates-TXT/guides/Frame%20542.png" 
