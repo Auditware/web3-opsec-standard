@@ -1,13 +1,8 @@
 <p align="center">
-  <img src="https://github.com/Auditware/web3-opsec-standard/blob/Readme.-Changes/Updates-TXT/images/contributors/W3OS%20Graphic.png" width="300" 
-       height="300" />
+  <img src="https://github.com/Auditware/web3-opsec-standard/blob/Readme.-Changes/Updates-TXT/images/contributors/W3OS%20Graphic.png" width="250" />
 </p>
 
-<img src="https://raw.githubusercontent.com/Auditware/web3-opsec-standard/refs/heads/Readme.-Changes/Updates-TXT/guides/Frame%20542.png" 
-       alt="W3OS Emblem" 
-       width="84" 
-       height="84" 
-       align="absmiddle" />
+<p>&nbsp;</p>
 
 [![Version](https://img.shields.io/badge/version-1.0.0--draft-orange.svg)](https://github.com/web3-opsec-standard/releases)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
