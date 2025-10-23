@@ -1,4 +1,8 @@
-# Web3 OpSec Standard (W3OS)
+<p align="center">
+  <img src="https://github.com/Auditware/web3-opsec-standard/blob/Readme.-Changes/Updates-TXT/images/contributors/W3OS%20Graphic.png" width="250" />
+</p>
+
+<p>&nbsp;</p>
 
 [![Version](https://img.shields.io/badge/version-1.0.0--draft-orange.svg)](https://github.com/web3-opsec-standard/releases)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -19,6 +23,9 @@ The Web3 Operational Security Standard (W3OS) is an open standard that defines c
 - **Auditors** to consistently and comprehensively evaluate organizational OpSec posture and easily manage review efforts
 - **Stakeholders** to evaluate the security maturity of their organizations and reduce risk
 
+<!-- ADDED -->
+*W3OS is for Web3 startups, DAOs, exchanges, wallets, infra projects, auditors, and ops/security leads who need a straightforward way to measure and improve operational security without diving into code-level detail.*
+
 ## How to Use W3OS
 
 Use the interactive page to track your progress through W3OS and measure your organization's level of compliance: https://w3osc.github.io/web3-opsec-standard/index.html
@@ -32,6 +39,54 @@ Web3 organizations face unique operational security challenges that traditional 
 - **Rapid Development Cycles**: Balancing security with the fast-paced nature of Web3 development
 
 Other Web3 security standards exist, but are not specifically focused on OpSec. W3OS is designed to be straightforward, actionable, and dedicated to operational security to supplement traditional code audits and help Web3 organizations maximize their overall security posture.
+
+<!-- ADDED -->
+Unlike other frameworks, W3OS is focused on **operational security maturity** — a complement to code audits that speaks directly to business and investor concerns.
+
+<!-- ADDED -->
+## Practical Scenarios for Using W3OS
+
+W3OS is designed to be actionable. Here are two examples of how organizations can apply it in everyday operations:
+
+### Protecting community channels (Discord / X / Telegram)
+
+**The risk**: If comms get hijacked, trust erodes and reputation tanks instantly.  
+
+**What W3OS recommends**:
+- Audit who has admin rights
+- Limit control to a small, trusted group
+- Require 2FA everywhere
+- Assign a backup owner role
+- Keep a short “what to do if hacked” playbook
+
+**Why this matters**:
+- Signals maturity to investors and partners
+- Reassures the community their safety is taken seriously
+- Avoids chaos — no scrambling in an incident
+- Builds credibility with clean, responsible operations
+
+---
+
+### Preparing for investor or client diligence
+
+**The risk**: Investors want proof an organization is not a liability.  
+
+**What W3OS recommends**:
+- Document who controls treasury wallets and require multisig
+- Maintain logs of access/device security checks
+- Have a one-page incident response outline
+- Prove comms channels are secure (no rogue Discord mods, verified X control)
+- Track progress in the W3OS interactive tool
+
+**Why this matters**:
+- Speeds up due diligence with fewer back-and-forth questions
+- Builds investor confidence with controls in place, not just promises
+- Positions teams as enterprise-ready, even if early-stage
+- Reduces friction in closing deals or partnerships
+
+---
+
+These scenarios show how W3OS helps organizations connect security maturity to business outcomes — trust, clarity, and credibility — without requiring deep technical skills.
 
 ## Core Contributors
 
