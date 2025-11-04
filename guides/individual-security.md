@@ -1,6 +1,6 @@
 <div align="center">
-  <h1>Individual Security Guide</h1>
-  <p><em>A guide for individuals to follow to maximize OpSec</em></p>
+  <h1>Individual Security Checklist</h1>
+  <p><em>A checklist guide for individuals to follow to maximize their OpSec</em></p>
 </div>
 
 ---
@@ -8,29 +8,29 @@
 
 
 ---
-#### Authentic Hardware Procurement
-- [ ] Hardware wallets should be obtained through verified supply chains (direct from manufacturer is ideal)
-- [ ] Device authenticity must be cryptographically verifiable upon receipt
-#### Hardware Wallet Features
- - [ ] Hardware wallets must support large screens capable of displaying complete transaction data
- - [ ] Clear signing technology is recommended
- - [ ] Devices must have secure PIN entry with randomized entry layouts
- - [ ] PIN entry must have time-based lockouts to prevent brute force attacks
- - [ ] Hardware wallets must support firmware integrity verification
-#### Mnemonic Seed Phrase Protection
- - [ ] Seed phrases must be stored on disaster-resistant, physical media
- - [ ] Seed phrases must not be stored in plain text - they must be encrypted with a randomly generated word order permutation, with the permutation key stored in a password manager
- - [ ] Private keys and seed phrases must be generated on wallet devices and must never be exported
- - [ ] Alternatively, seed phrases can be sharded using Shamir's Secret Sharing algorithm, with each shard recommended to be shared with a trusted guardian (3rd party custodian service, family members, password manager, personal physical media, etc.)
-#### Physical Security
- - [ ] Wallets must have a PIN requirement or biometric factor required to access the wallet and approve transactions
- - [ ] PINs must be at least 6 digits long
- - [ ] Wallets should be physically secured in a safe or secret hiding place when not in use
-#### Dedicated Signing Machines
- - [ ] Multi-sig operations must be performed on devices dedicated only to these transactions and verification tools
- - [ ] All network access should be default blocked, with only the minimum necessary IPs to execute these transaction signatures allowed
- - [ ] Signing devices must be operated on private, authenticated networks
- - [ ] Organizations must implement active network monitoring on signing devices
+# Wallets & Transactions
+### Hardware Wallets
+- [ ] Hardware wallets should be obtained through verified supply chains:
+	- Direct from manufacturer
+	- Via a physical trusted retailer
+	- NOT from a third party or reseller
+- [ ] Wallet device authenticity must be cryptographically verifiable upon receipt to ensure firmware integrity (i.e. as part of the initial set up process)
+- [ ] Hardware wallets must have a large screen capable of displaying complete transaction data
+	- [ ] Clear signing technology is recommended, but is not a silver bullet and should not replace thorough transaction scrutiny
+- [ ] Wallets should have secure PIN entry with randomized entry layouts OR biometric login
+	- [ ] PIN entry must have time-based lockouts to prevent brute force attacks
+	- [ ] PINs must be at least 6 digits long
+- [ ] Wallets should be physically secured in a safe or secret hiding place when not in use
+#### Wallet Backups
+ - [ ] Seed phrases must be stored on disaster-resistant, physical media. 
+ - [ ] Seed phrases must not be stored in plain text - importing them must require a passphrase, additional word, or be scrambled with a random word order; with the secret stored in a password manager
+ - [ ] Private keys and seed phrases must be generated on wallet devices and must never be exported (they should never touch another device in any form - no pictures stored or backups in a password manager)
+	 - [ ] Alternatively, seed phrases can be sharded (requiring N of M shards to recompose) - e.g. by using Shamir's Secret Sharing algorithm, with each shard recommended to be shared with a trusted guardian (3rd party custodian service, family members, password manager, personal physical media, etc.)
+#### Multi-sig Participation
+ - [ ] Multi-sig operations must be performed on devices dedicated only to those transactions and transaction verification tools (i.e. you should have a laptop dedicated only to transacting)
+	 - [ ] Signing devices must be operated on private, authenticated networks or over trusted VPNs
+	 - [ ] Active network monitoring should be in place (e.g. Little Snitch, Lulu, or Glasswire - with default deny on all network requests and only the minimum necessary IPs to execute transactions allowed)
+# Endpoints
 #### Dedicated Devices
  - [ ] Each organization member must have a device dedicated to organization-related activities and work
  - [ ] Devices should have biometric login options, secure boot, and support for full disk encryption
