@@ -29,15 +29,14 @@
 #### Multi-sig Participation
  - [ ] Multi-sig operations must be performed on devices dedicated only to those transactions and transaction verification tools (i.e. you should have a laptop dedicated only to transacting)
 	 - [ ] Signing devices must be operated on private, authenticated networks or over trusted VPNs
-	 - [ ] Active network monitoring should be in place (e.g. Little Snitch, Lulu, or Glasswire - with default deny on all network requests and only the minimum necessary IPs to execute transactions allowed)
+	 - [ ] Active network monitoring should be in place (e.g. Little Snitch, Lulu, or GlassWire - with default deny on all network requests and only the minimum necessary IPs to execute transactions allowed)
 # Endpoints
-#### Dedicated Devices
+### Devices
  - [ ] Each organization member must have a device dedicated to organization-related activities and work
  - [ ] Devices should have biometric login options, secure boot, and support for full disk encryption
  - [ ] Personal devices must never be used for work activities or have access to organization accounts
 #### Device Supply Chain Security
  - [ ] Dedicated devices should be procured by the organization directly from manufacturers or authorized distributors
- - [ ] Hardware wallets should be purchased using pseudonyms and delivered to secure locations
  - [ ] Devices must be delivered securely and inspected for tampering upon receipt
  - [ ] Hardware authenticity must be verified through cryptographic attestation when available
 #### Device Configuration
