@@ -1,6 +1,6 @@
 <div align="center">
   <h1>Personal Security Checklist</h1>
-  <p><em>A checklist guide for individuals to follow to maximize their OpSec</em></p>
+  <p><em>A checklist guide for individuals to maximize their OpSec as part of an organization</em></p>
 </div>
 
 ---
@@ -40,11 +40,9 @@
 - [ ] Devices should have biometric login options, secure boot, and support for full disk encryption
 ### Device Usage
 - [ ] Personal devices must never be used for work activities or have access to organization accounts
-- [ ] Full disk encryption must be enabled on all work devices
 - [ ] Inactivity screen locks must be enabled, with a period of no more than 5 minutes before requiring password re-entry
-- [ ] OS and browser security updates must always be installed as soon as possible when they are available
 - [ ] OS accounts for daily usage should not have administrator privileges
-- [ ] Biometric authentication should be used to prevent password leakage to cameras and onlookers when in public
+- [ ] Only biometric authentication should be used in non-private spaces to prevent password leakage to cameras and onlookers
 - [ ] Privacy screens should be used when working in public spaces
 ### Network Security
 - [ ] Home WiFi networks should have recommended security settings:
@@ -56,13 +54,14 @@
 	- [ ] Disable WPS
 	- [ ] Disable remote management
 - [ ] A secure DNS provider should be configured in network settings on your devices (e.g. Cloudflare's [1.1.1.1](https://www.cloudflare.com/learning/dns/what-is-1.1.1.1/))
-- [ ] A trusted VPN should be used when on any public Wi-Fi
-- [ ] All work devices must have active network monitoring in place (e.g. [Little Snitch](https://www.obdev.at/products/littlesnitch/) (macOS), [Lulu](https://objective-see.org/products/lulu.html) (free alternative), or [Glasswire](https://www.glasswire.com/) (Windows))
+- [ ] A trusted VPN profile should be configured for use when on any public Wi-Fi
+- [ ] All work devices must have active network monitoring in place (e.g. [Little Snitch](https://www.obdev.at/products/littlesnitch/), [Lulu](https://objective-see.org/products/lulu.html), or [Glasswire](https://www.glasswire.com/))
 	- [ ] Network monitoring tools must track outbound connections and block all traffic by default, unless explicitly approved
-- [ ] OS network firewalls must be enabled
+- [ ] OS network firewalls must be enabled with no rule exceptions
 ### Device Configuration
-- [ ] All work devices should have basic antivirus software enabled (built-in OS antivirus is acceptable, but must be properly enabled without any rule exceptions)
-- [ ] Antivirus software should be regularly updated as soon as new releases are available
+- [ ] Full disk encryption must be enabled on all work devices
+- [ ] All work devices must have basic antivirus software enabled (built-in OS antivirus is acceptable, but must be properly enabled without any rule exceptions)
+- [ ] All security software, browsers, and operating systems must be regularly updated as soon as new releases are available that include to security fixes
 # Operations
 #### Browser Security and Isolation
 - [ ] Organization members should implement browser app isolation
