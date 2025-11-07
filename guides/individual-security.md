@@ -6,6 +6,7 @@
 ---
 ## Overview
 
+Your personal security directly impacts your organization's security posture. Compromise of an individual can allow attackers to easily infect other organization members via trusted channels, code repos, and shared files. This checklist serves as a comprehensive list of best practices that all individuals should follow to ensure their personal security is strong to protect themselves and the organizations they are a part of.
 
 ---
 # Work Devices
